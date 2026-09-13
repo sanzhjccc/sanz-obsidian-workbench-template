@@ -1,0 +1,158 @@
+/* Visual Workstation — dashboard styling for 工作站主页.md */
+.visual-workstation {
+  --ws-ink: #edf0ff;
+  --ws-muted: #a9b2ca;
+  --ws-line: rgba(181, 193, 255, 0.16);
+  --ws-card: rgba(20, 25, 37, 0.88);
+  --ws-purple: #9c8cff;
+  --ws-cyan: #4fdfd2;
+}
+
+.visual-workstation .markdown-preview-sizer,
+.visual-workstation .cm-sizer {
+  max-width: 1080px;
+}
+
+.visual-workstation .markdown-preview-view {
+  background: radial-gradient(circle at 72% 8%, rgba(74, 57, 163, 0.22), transparent 26%), #0a0d12;
+}
+
+.visual-workstation h1 {
+  font-size: 2.15em;
+  letter-spacing: -0.045em;
+  margin: 0.2em 0 0.8em;
+}
+
+.workstation-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-sizing: border-box;
+  padding: 2rem;
+  border: 1px solid var(--ws-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 14%, rgba(37, 184, 199, 0.32), transparent 24%),
+    radial-gradient(circle at 0 100%, rgba(102, 87, 217, 0.27), transparent 35%),
+    linear-gradient(145deg, rgba(21, 27, 40, 0.96), rgba(12, 15, 23, 0.94));
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+}
+
+.workstation-hero h2 {
+  margin: 0.16rem 0 0.45rem;
+  font-size: 1.55rem;
+  color: var(--ws-ink);
+}
+
+.workstation-hero p { margin: 0; color: var(--ws-muted); }
+.workstation-eyebrow { font-size: 0.72rem; letter-spacing: 0.13em; font-weight: 700; }
+
+.workstation-status {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--ws-line);
+  border-radius: 999px;
+  color: var(--ws-ink);
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.workstation-status span { color: #39c98d; font-size: 0.95rem; }
+
+.workstation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 0.8rem 0 1.7rem;
+}
+
+.workstation-card,
+.workstation-panel {
+  box-sizing: border-box;
+  border: 1px solid var(--ws-line);
+  border-radius: 16px;
+  background: var(--ws-card);
+  box-shadow: 0 8px 20px rgba(64, 72, 120, 0.06);
+}
+
+.workstation-card {
+  min-height: 132px;
+  padding: 1.05rem;
+  color: var(--ws-ink) !important;
+  text-decoration: none !important;
+  transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.workstation-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ws-purple);
+  box-shadow: 0 13px 28px rgba(64, 72, 120, 0.16);
+}
+
+.workstation-card-accent {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--ws-purple), var(--ws-cyan));
+  color: white !important;
+}
+
+.workstation-tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.workstation-tech-grid .workstation-card { min-height: 180px; }
+.workstation-tag { display: block; color: var(--ws-muted); font-size: 0.67rem; font-weight: 750; letter-spacing: 0.12em; }
+.workstation-tech-grid .workstation-icon { display: block; margin: 1rem 0 0.45rem; font-size: 1.65rem; }
+.workstation-card-embedded { background: linear-gradient(145deg, rgba(11, 42, 52, 0.94), rgba(13, 20, 29, 0.96)); }
+.workstation-card-embodied { background: linear-gradient(145deg, rgba(47, 29, 82, 0.94), rgba(15, 19, 30, 0.96)); }
+.workstation-card-agent { background: linear-gradient(145deg, rgba(14, 64, 50, 0.94), rgba(12, 22, 25, 0.96)); }
+
+.workstation-roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0.8rem 0 1.7rem;
+  border: 1px solid var(--ws-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--ws-card);
+}
+
+.workstation-roadmap div { position: relative; min-height: 106px; padding: 1.1rem 1.25rem; border-right: 1px solid var(--ws-line); }
+.workstation-roadmap div:last-child { border-right: 0; }
+.workstation-roadmap span { display: block; color: var(--ws-cyan); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; }
+.workstation-roadmap strong { display: block; margin: 0.3rem 0; color: var(--ws-ink); }
+.workstation-roadmap small { color: var(--ws-muted); line-height: 1.45; }
+
+.workstation-card strong,
+.workstation-card small { display: block; }
+.workstation-card strong { margin: 0.35rem 0 0.25rem; font-size: 0.98rem; }
+.workstation-card small { color: var(--ws-muted); line-height: 1.35; }
+.workstation-card-accent small { color: rgba(255, 255, 255, 0.78); }
+.workstation-icon { font-size: 1.35rem; color: var(--ws-cyan); }
+.workstation-card-accent .workstation-icon { color: white; }
+
+.workstation-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.workstation-panel { padding: 0.8rem 1rem; min-height: 175px; }
+.workstation-panel-title { margin: 0.1rem 0 0.7rem; color: var(--ws-muted); font-size: 0.75rem; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; }
+.workstation-panel .block-language-dataview { margin: 0; }
+
+.visual-workstation .callout {
+  border-radius: 15px;
+  border: 1px solid var(--ws-line);
+  box-shadow: 0 8px 20px rgba(64, 72, 120, 0.05);
+}
+
+.visual-workstation .dataview.table-view-table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid var(--ws-line); border-radius: 14px; }
+.visual-workstation .dataview.table-view-table th { color: var(--ws-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.visual-workstation .dataview.table-view-table tr:last-child td { border-bottom: 0; }
+
+@media (max-width: 760px) {
+  .workstation-hero { display: block; padding: 1.4rem; }
+  .workstation-status { display: inline-block; margin-top: 1rem; }
+  .workstation-grid, .workstation-panels, .workstation-tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workstation-roadmap { grid-template-columns: 1fr; }
+  .workstation-roadmap div { border-right: 0; border-bottom: 1px solid var(--ws-line); }
+  .workstation-roadmap div:last-child { border-bottom: 0; }
+}
+
+@media (max-width: 480px) {
+  .workstation-grid, .workstation-panels, .workstation-tech-grid { grid-template-columns: 1fr; }
+}
