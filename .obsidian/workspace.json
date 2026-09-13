@@ -1,0 +1,125 @@
+{
+  "main": {
+    "id": "workbench-main",
+    "type": "split",
+    "direction": "vertical",
+    "children": [
+      {
+        "id": "workbench-tabs",
+        "type": "tabs",
+        "currentTab": 0,
+        "children": [
+          {
+            "id": "knowledge-tree-leaf",
+            "type": "leaf",
+            "state": {
+              "type": "sanz-knowledge-tree-view",
+              "state": {},
+              "icon": "network",
+              "title": "Sanz 的知识树"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "left": {
+    "id": "left-panel",
+    "type": "split",
+    "direction": "horizontal",
+    "width": 320,
+    "children": [
+      {
+        "id": "left-tabs",
+        "type": "tabs",
+        "currentTab": 0,
+        "children": [
+          {
+            "id": "file-explorer-leaf",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "search-leaf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "right": {
+    "id": "right-panel",
+    "type": "split",
+    "direction": "horizontal",
+    "width": 360,
+    "children": [
+      {
+        "id": "right-tabs",
+        "type": "tabs",
+        "currentTab": 0,
+        "children": [
+          {
+            "id": "backlink-leaf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "outline-leaf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "left-ribbon": {
+    "hiddenItems": {}
+  },
+  "active": "knowledge-tree-leaf",
+  "lastOpenFiles": []
+}
