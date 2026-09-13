@@ -1,6 +1,6 @@
 # Sanz Obsidian 工作台模板
 
-一个面向持续学习、技术研究和项目复盘的中文 Obsidian 工作台。它提供清晰的知识目录、开箱即用的三栏工作区、统一视觉样式，以及两个随模板提供的本地插件。
+一个面向持续学习、技术研究和项目复盘的中文 Obsidian 工作台。它提供清晰的知识目录、开箱即用的三栏工作区、统一视觉样式，以及工作站中使用的 13 个本地插件。
 
 > 这是一个“干净起点”，不是作者个人知识库的副本：模板保留结构和工具，不包含任何个人笔记、项目文件、日历或对话记录。
 
@@ -109,18 +109,17 @@ git clone https://github.com/<你的 GitHub 用户名>/sanz-obsidian-workbench-t
 
 安全提示：运行 Notebook 代码等同于在本机执行代码。只运行自己信任的 Notebook；模板不会提供或上传任何 Python 环境。
 
-## 可选增强
+## 随模板分发的插件
 
-下列插件不随模板分发。请从 Obsidian 社区插件市场或各插件官方发布渠道自行安装，并在安装前审查权限：
+模板包含工作站当前安装的全部插件代码：`calendar`、`code-emitter`、`dataview`、`galaxy-view`、`homepage`、`jupyter-editor`、`obsidian-charts`、`obsidian-excalidraw-plugin`、`obsidian-git`、`obsidian-icon-folder`、`obsidian-kanban`、`realclaudian` 和 `sanz-knowledge-tree`。其中除 `homepage` 外的插件会写入默认启用清单；请在 **设置 → 第三方插件** 中逐项审查、信任和按需启用。
 
 - Dataview：查询和汇总笔记中的结构化信息。
 - Excalidraw：手绘图、草图和可视化思考。
-- Kanban：把待办组织为看板。
-- Calendar：以日历方式访问日记。
-- Obsidian Git：用 Git 提交与同步 Markdown 仓库。
-- Obsidian Charts：在笔记中绘制图表。
+- Kanban、Calendar 与 Obsidian Charts：组织任务、日记和图表。
+- Obsidian Git：提交与同步 Markdown 仓库。
+- Jupyter Editor、Code Emitter、Galaxy View、Icon Folder、Realclaudian、Homepage 和知识树：分别提供 Notebook、代码展示、图谱、图标、智能工作流、主页与导航能力。
 
-可选插件与模板无强依赖；即使一个都不安装，模板也能正常使用。
+为保护隐私，模板不复制任何插件的个人 `data.json` 设置；Jupyter 的 Python 路径为空，使用前请在自己的设备上重新配置。运行第三方插件或 Notebook 前，请审查其代码及权限。
 
 ## Git 同步建议
 

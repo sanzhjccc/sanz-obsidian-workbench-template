@@ -4,14 +4,26 @@
   "created": "2026-09-08",
   "containsPersonalNoteContent": false,
   "bundledPlugins": [
+    "calendar",
+    "code-emitter",
+    "dataview",
+    "galaxy-view",
+    "homepage",
     "sanz-knowledge-tree",
-    "jupyter-editor"
+    "jupyter-editor",
+    "obsidian-charts",
+    "obsidian-excalidraw-plugin",
+    "obsidian-git",
+    "obsidian-icon-folder",
+    "obsidian-kanban",
+    "realclaudian"
   ],
   "sanitized": [
     "workspace history",
     "personal paths",
     "calendar events",
     "AI conversation state",
-    "Git repository data"
+    "Git repository data",
+    "plugin personal settings"
   ]
 }

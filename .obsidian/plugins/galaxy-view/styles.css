@@ -1,0 +1,890 @@
+/* Galaxy View — 视图、控制面板、浮层（深空 gx-theme-dark / 晨昼 gx-theme-light） */
+
+.galaxy-view-content {
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.galaxy-view-canvas {
+	position: absolute;
+	inset: 0;
+}
+
+.galaxy-view-canvas:focus {
+	outline: none;
+}
+
+/* ---------- 控制面板 ---------- */
+
+.galaxy-panel {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 12;
+	width: 252px;
+	border-radius: 10px;
+	font-size: 12px;
+	user-select: none;
+	max-height: calc(100% - 20px);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden; /* 滚动交给 body，面板框+resizer 固定 */
+}
+
+.galaxy-panel.gx-theme-dark {
+	background: rgba(10, 14, 24, 0.74);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: #e8ecf6;
+}
+
+.galaxy-panel.gx-theme-light {
+	background: rgba(252, 250, 245, 0.82);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(31, 41, 51, 0.12);
+	color: #1f2933;
+}
+
+.galaxy-panel-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 8px 10px;
+}
+
+.galaxy-panel-stats {
+	font-family: var(--font-monospace);
+	font-size: 11px;
+	opacity: 0.75;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.galaxy-panel-collapse {
+	flex-shrink: 0;
+	width: 22px;
+	height: 22px;
+	padding: 0;
+	line-height: 1;
+	background: transparent;
+	border: 1px solid currentColor;
+	color: inherit;
+	opacity: 0.6;
+	border-radius: 6px;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.galaxy-panel-body {
+	padding: 0 10px 10px;
+	flex: 1;
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+
+.galaxy-panel-body.is-hidden {
+	display: none;
+}
+
+.galaxy-panel-section {
+	margin-top: 4px;
+}
+
+.galaxy-panel-section-title {
+	font-size: 11px;
+	font-weight: 600;
+	opacity: 0.55;
+	letter-spacing: 0.05em;
+	margin: 8px 0 2px;
+}
+
+.galaxy-panel-row {
+	display: flex;
+	gap: 6px;
+	margin-top: 10px;
+}
+
+.galaxy-panel-row button {
+	flex: 1;
+	font-size: 11px;
+	padding: 3px 8px;
+	background: rgba(127, 127, 127, 0.12);
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	color: inherit;
+	border-radius: 6px;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.galaxy-panel-row button:hover {
+	background: rgba(127, 127, 127, 0.25);
+}
+
+.galaxy-panel-dev {
+	margin-top: 10px;
+	border-top: 1px solid rgba(127, 127, 127, 0.2);
+	padding-top: 6px;
+}
+
+.galaxy-panel-dev summary {
+	font-size: 11px;
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.galaxy-panel-help {
+	margin-top: 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	font-size: 11px;
+	opacity: 0.8;
+}
+
+/* ---------- Lightroom 式滑杆 ---------- */
+
+.gx-slider {
+	padding: 4px 0 2px;
+}
+
+.gx-slider-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.gx-slider-label {
+	opacity: 0.85;
+}
+
+.gx-slider-value {
+	font-family: var(--font-monospace);
+	font-size: 11px;
+	opacity: 0.9;
+}
+
+.gx-slider-value.is-default {
+	opacity: 0.45;
+}
+
+.gx-slider-track {
+	position: relative;
+	height: 18px;
+	cursor: ew-resize;
+	touch-action: none;
+}
+
+.gx-slider-rail {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 8px;
+	height: 2px;
+	border-radius: 1px;
+	background: currentColor;
+	opacity: 0.18;
+}
+
+.gx-slider-fill {
+	position: absolute;
+	top: 8px;
+	height: 2px;
+	border-radius: 1px;
+	background: #7f9bff;
+}
+
+.gx-theme-light .gx-slider-fill {
+	background: #3a5fd9;
+}
+
+.gx-slider-notch {
+	position: absolute;
+	left: 50%;
+	top: 4px;
+	width: 1.5px;
+	height: 10px;
+	margin-left: -0.75px;
+	background: currentColor;
+	opacity: 0.4;
+}
+
+.gx-slider-thumb {
+	position: absolute;
+	top: 4px;
+	width: 10px;
+	height: 10px;
+	margin-left: -5px;
+	border-radius: 50%;
+	background: #e8ecf6;
+	border: 1.5px solid #7f9bff;
+	pointer-events: none;
+}
+
+.gx-theme-light .gx-slider-thumb {
+	background: #fcfaf5;
+	border-color: #3a5fd9;
+}
+
+.gx-slider-bounds {
+	display: flex;
+	justify-content: space-between;
+	font-family: var(--font-monospace);
+	font-size: 9px;
+	opacity: 0.38;
+	margin-top: -2px;
+}
+
+/* ---------- 浮层：标签与卡片 ---------- */
+
+.gx-overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 8;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.gx-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	transform: translate3d(-1000px, -1000px, 0);
+	translate: -50% -100%;
+	font-size: 11px;
+	white-space: nowrap;
+	color: #dbe2f2;
+	text-shadow: 0 0 6px rgba(0, 0, 6, 0.95);
+	transition: opacity 150ms ease;
+}
+
+.gx-daylight .gx-label {
+	color: #1f2933;
+	text-shadow: 0 0 6px rgba(246, 244, 239, 0.95);
+}
+
+.gx-label-hover,
+.gx-label-neighbor {
+	font-size: 11px;
+}
+
+.gx-label-hover {
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.gx-card {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 6; /* 卡片永远盖住浮层标签（G2 bug 修复） */
+	width: 280px;
+	transform: translate3d(-1000px, -1000px, 0);
+	pointer-events: auto;
+	border-radius: 10px;
+	padding: 12px 14px;
+	font-size: 12px;
+	background: rgba(10, 14, 24, 0.78);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: #e8ecf6;
+}
+
+.gx-daylight .gx-card {
+	background: rgba(252, 250, 245, 0.88);
+	border: 1px solid rgba(31, 41, 51, 0.14);
+	color: #1f2933;
+}
+
+.gx-card-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 8px;
+	cursor: move;
+}
+.gx-card-title {
+	font-size: 15px;
+	font-weight: 600;
+	margin-bottom: 4px;
+	flex: 1;
+	min-width: 0;
+}
+.gx-card-collapse {
+	flex: none;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	line-height: 1;
+	font-size: 13px;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	background: transparent;
+	color: inherit;
+	opacity: 0.55;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: none;
+}
+.gx-card-collapse:hover { opacity: 1; }
+.gx-card.is-collapsed .gx-card-body { display: none; }
+
+.gx-card-meta {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 11px;
+	opacity: 0.7;
+}
+
+.gx-card-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.gx-card-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 8px;
+}
+
+.gx-card-tag {
+	font-size: 10px;
+	padding: 1px 7px;
+	border-radius: 8px;
+	background: rgba(127, 155, 255, 0.18);
+	border: 1px solid rgba(127, 155, 255, 0.3);
+}
+
+.gx-card-stats {
+	margin-top: 8px;
+	font-size: 11px;
+	opacity: 0.75;
+}
+
+.gx-card-snippet {
+	margin-top: 6px;
+	font-size: 11px;
+	line-height: 1.5;
+	opacity: 0.65;
+	max-height: 50px;
+	overflow: hidden;
+}
+
+.gx-card-actions {
+	display: flex;
+	gap: 6px;
+	margin-top: 10px;
+}
+
+.gx-card-actions button {
+	flex: 1;
+	font-size: 11px;
+	padding: 3px 8px;
+	background: rgba(127, 127, 127, 0.12);
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	color: inherit;
+	border-radius: 6px;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.gx-search-path {
+	font-size: 11px;
+	color: var(--text-muted);
+}
+
+/* ---------- 开场遮罩 ---------- */
+
+.gx-mask {
+	position: absolute;
+	inset: 0;
+	z-index: 20;
+	background: #000003;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 600ms ease;
+}
+
+.gx-mask.is-fading {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.gx-mask-text {
+	color: #aeb8d0;
+	font-size: 13px;
+	letter-spacing: 0.3em;
+	animation: gx-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes gx-pulse {
+	0%,
+	100% {
+		opacity: 0.35;
+	}
+	50% {
+		opacity: 0.9;
+	}
+}
+
+/* ---------- 风格预设 chips 与折叠分区（面板 v3） ---------- */
+
+.gx-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin-top: 8px;
+}
+
+.gx-chip {
+	flex: 1 1 calc(50% - 3px);
+	min-width: 0;
+	font-size: 11px;
+	padding: 5px 4px;
+	border-radius: 12px;
+	background: rgba(127, 127, 127, 0.1);
+	border: 1px solid rgba(127, 127, 127, 0.22);
+	color: inherit;
+	cursor: pointer;
+	box-shadow: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.gx-chip:hover {
+	background: rgba(127, 155, 255, 0.18);
+}
+
+.gx-chip.is-active {
+	background: rgba(127, 155, 255, 0.25);
+	border-color: rgba(127, 155, 255, 0.6);
+}
+
+/* 分组标注的 chips（星系 / 特效） */
+.gx-chip-group {
+	margin-top: 8px;
+}
+
+.gx-chip-group-label {
+	font-size: 10px;
+	font-weight: 600;
+	opacity: 0.5;
+	letter-spacing: 0.06em;
+}
+
+.gx-chip-group .gx-chips {
+	margin-top: 4px;
+}
+
+/* 首屏可关闭提示（替代帮助墙） */
+.gx-firstrun-hint {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 8px;
+	padding: 6px 8px;
+	font-size: 11px;
+	line-height: 1.35;
+	border-radius: 6px;
+	background: rgba(127, 155, 255, 0.14);
+	border: 1px solid rgba(127, 155, 255, 0.3);
+}
+
+.gx-hint-close {
+	flex: 0 0 auto;
+	margin-left: auto;
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	font-size: 13px;
+	line-height: 1;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+	opacity: 0.7;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.gx-hint-close:hover {
+	opacity: 1;
+	background: rgba(127, 127, 127, 0.2);
+}
+
+/* 创世动画文字链接 */
+.gx-genesis-row {
+	margin-top: 6px;
+	text-align: center;
+}
+
+.gx-textlink {
+	font-size: 11px;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	color: inherit;
+	opacity: 0.65;
+	cursor: pointer;
+	text-decoration: underline;
+	padding: 2px 4px;
+}
+
+.gx-textlink:hover {
+	opacity: 1;
+}
+
+.gx-section {
+	margin-top: 8px;
+	border-top: 1px solid rgba(127, 127, 127, 0.16);
+	padding-top: 4px;
+}
+
+.gx-section > summary {
+	font-size: 11px;
+	font-weight: 600;
+	opacity: 0.6;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	width: 100%;
+	padding: 6px 2px;
+	border-radius: 6px;
+}
+.gx-section > summary:hover {
+	opacity: 0.9;
+	background: rgba(127, 155, 255, 0.08);
+}
+
+.gx-caret {
+	font-size: 9px;
+	display: inline-block;
+	color: var(--text-faint, #626e8a);
+	transition: transform 120ms ease;
+}
+
+.gx-section[open] > summary .gx-caret {
+	transform: rotate(90deg);
+}
+
+.gx-section-body {
+	padding-top: 2px;
+}
+
+/* 折叠「区」（导航与动效）：summary 复用区标题观感（大写+字距），仅多一个 caret */
+.gx-zone-section {
+	margin-top: 14px;
+	border-top: none;
+	padding-top: 0;
+}
+.gx-zone-section > summary {
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 1;
+	color: rgba(150, 160, 185, 0.7);
+	border-bottom: 1px solid rgba(140, 150, 180, 0.14);
+	border-radius: 0;
+	padding: 0 2px 5px;
+}
+.gx-zone-section > summary:hover {
+	background: transparent;
+	color: rgba(185, 195, 220, 0.92);
+}
+
+.gx-theme-select {
+	width: 100%;
+	margin-top: 8px;
+	font-size: 11px;
+	padding: 3px 6px;
+	border-radius: 6px;
+	background: rgba(127, 127, 127, 0.12);
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	color: inherit;
+	cursor: pointer;
+}
+
+.gx-theme-select option {
+	color: var(--text-normal);
+	background: var(--background-primary);
+}
+
+/* ---------- M4 移动端 ---------- */
+
+/* .gx-mobile .gx-card 比 .gx-card 更具体 → 靠选择器特异性覆盖 left/top/transform
+   （JS 已在移动端清掉内联 transform，见 OverlayManager.setSelection） */
+.gx-mobile .gx-card {
+	left: 8px;
+	right: 8px;
+	top: auto;
+	/* 自适应：实测 navbar 重叠（--gx-bottom-inset）与 iPhone 横条安全区取大者 */
+	bottom: calc(10px + max(var(--gx-bottom-inset, 0px), env(safe-area-inset-bottom, 0px)));
+	width: auto;
+	max-height: 40vh;
+	overflow-y: auto;
+	transform: none;
+}
+
+.gx-mask-btn {
+	font-size: 13px;
+	padding: 8px 18px;
+	border-radius: 8px;
+	background: rgba(127, 155, 255, 0.2);
+	border: 1px solid rgba(127, 155, 255, 0.5);
+	color: #e8ecf6;
+	cursor: pointer;
+}
+
+/* ---------- 面板 v4（v0.3 重构）：顶栏 / 分区 / 预设卡 / 导航块 / 底栏 ---------- */
+.gx-head-spacer { flex: 1; }
+.galaxy-panel-header { position: relative; flex: none; }
+/* 面板右边缘拖拽调宽 */
+.gx-resizer { position: absolute; top: 0; right: 0; width: 8px; height: 100%; cursor: ew-resize; z-index: 30; }
+.gx-resizer:hover { background: linear-gradient(to right, transparent, rgba(127, 155, 255, 0.25)); }
+.gx-ico {
+	width: 24px;
+	height: 24px;
+	margin-left: 5px;
+	border-radius: 7px;
+	font-size: 12px;
+	line-height: 1;
+	background: rgba(127, 127, 127, 0.12);
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	color: inherit;
+	cursor: pointer;
+	box-shadow: none;
+}
+.gx-ico:hover { background: rgba(127, 155, 255, 0.2); }
+.gx-lang-btn {
+	height: 24px;
+	margin-left: 5px;
+	padding: 0 8px;
+	border-radius: 7px;
+	font-size: 11px;
+	line-height: 1;
+	letter-spacing: 0.02em;
+	background: rgba(127, 127, 127, 0.12);
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	color: inherit;
+	cursor: pointer;
+	box-shadow: none;
+}
+.gx-lang-btn:hover { background: rgba(127, 155, 255, 0.2); }
+
+.gx-zone-h {
+	margin-top: 14px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(150, 160, 185, 0.7);
+	border-bottom: 1px solid rgba(140, 150, 180, 0.14);
+	padding-bottom: 4px;
+}
+
+/* preset cards */
+.gx-preset-host { margin-top: 10px; }
+.gx-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.gx-preset-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; color: rgba(150, 160, 185, 0.75); margin: 12px 0 5px; }
+/* 预设卡（独立命名，避开 OverlayManager 节点卡的 .gx-card——那条有 transform:translate3d(-1000px…) 会把预设卡推出屏外） */
+.gx-pcard {
+	position: relative;
+	display: block;
+	text-align: left;
+	background: rgba(140, 150, 180, 0.09);
+	border: 1px solid rgba(140, 160, 210, 0.16);
+	border-radius: 10px;
+	padding: 7px 9px;
+	cursor: pointer;
+	color: inherit;
+	box-shadow: none;
+	transition: border-color 0.12s, background 0.12s;
+}
+.gx-pcard:hover { border-color: rgba(127, 155, 255, 0.55); background: rgba(127, 155, 255, 0.14); }
+.gx-pcard.is-active { border-color: rgba(127, 155, 255, 0.55); background: rgba(127, 155, 255, 0.2); box-shadow: inset 0 0 0 1px rgba(127, 155, 255, 0.5); }
+.gx-pcard.is-confirming { border-color: rgba(255, 120, 120, 0.6); background: rgba(255, 120, 120, 0.1); }
+.gx-pcard-n { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; }
+.gx-pcard-icon { display: inline-flex; width: 18px; height: 18px; flex: none; overflow: hidden; }
+/* 关键：约束内联 SVG 尺寸——否则无 width/height 时 SVG 按默认 300×150 展开，把卡片撑成一片空白 */
+.gx-pcard-icon svg { width: 18px; height: 18px; display: block; }
+.gx-pcard-rename { flex: 1; min-width: 0; font-size: 12px; font-weight: 600; padding: 1px 4px; border: 1px solid rgba(127, 155, 255, 0.6); border-radius: 4px; background: rgba(0, 0, 0, 0.4); color: #eaf0ff; box-shadow: none; }
+.gx-pcard-s { font-size: 10px; color: rgba(150, 160, 185, 0.7); margin-top: 3px; line-height: 1.25; }
+.gx-pcard.is-active .gx-pcard-s { color: #b9c6ea; }
+.gx-mine-ops { position: absolute; top: 5px; right: 6px; opacity: 0; transition: opacity 0.12s; }
+.gx-pcard:hover .gx-mine-ops { opacity: 1; }
+.gx-pcard.is-renaming .gx-mine-ops { display: none; }
+.gx-mine-ops button.gx-more { width: 22px; height: 20px; border: 0; border-radius: 5px; background: rgba(0, 0, 0, 0.35); color: rgba(160, 170, 195, 0.85); font-size: 15px; line-height: 1; padding: 0 0 3px; cursor: pointer; box-shadow: none; }
+.gx-mine-ops button.gx-more:hover { color: #fff; background: rgba(127, 155, 255, 0.4); }
+
+/* section markers */
+.gx-sec-head-spacer { flex: 1; }
+.gx-sec-badge { font-size: 9.5px; padding: 1px 6px; border-radius: 999px; background: rgba(140, 150, 180, 0.16); color: rgba(150, 160, 185, 0.75); }
+.gx-sec-badge.is-dirty { background: rgba(255, 185, 92, 0.16); color: #ffb95c; }
+.gx-sec-badge.is-preview { background: rgba(127, 155, 255, 0.16); color: #8ea6ff; }
+.gx-sec-restore { margin-left: 4px; border: 0; background: transparent; color: #ffb95c; font-size: 10px; cursor: pointer; box-shadow: none; }
+.gx-sec-restore:hover { text-decoration: underline; }
+.gx-sec-restore.gx-hide { display: none; }
+
+/* nav blocks */
+.gx-nav-block { margin-top: 12px; padding: 9px 10px; border: 1px solid rgba(140, 160, 210, 0.16); border-radius: 10px; background: rgba(140, 150, 180, 0.05); }
+.gx-nav-head { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; }
+.gx-nav-sub { font-size: 10.5px; color: rgba(150, 160, 185, 0.65); margin-top: 4px; line-height: 1.35; }
+.gx-mini-toggle { width: 24px; height: 22px; border-radius: 6px; border: 1px solid rgba(140, 160, 210, 0.16); background: rgba(140, 150, 180, 0.1); color: rgba(150, 160, 185, 0.8); font-size: 12px; cursor: pointer; box-shadow: none; }
+.gx-mini-toggle.is-on { background: rgba(127, 155, 255, 0.3); color: #fff; border-color: rgba(127, 155, 255, 0.5); }
+.gx-play { font-size: 11px; padding: 4px 12px; border-radius: 7px; border: 1px solid rgba(127, 155, 255, 0.5); background: rgba(127, 155, 255, 0.18); color: #dfe6ff; cursor: pointer; box-shadow: none; }
+.gx-play:hover { background: rgba(127, 155, 255, 0.3); }
+
+/* segmented (quality) */
+.gx-seg { display: flex; gap: 2px; margin-top: 10px; padding: 2px; background: rgba(140, 150, 180, 0.16); border-radius: 8px; }
+.gx-seg button { flex: 1; border: 0; background: transparent; color: rgba(150, 160, 185, 0.8); font-size: 11px; padding: 5px 4px; border-radius: 6px; cursor: pointer; box-shadow: none; }
+.gx-seg button.is-on { background: rgba(127, 155, 255, 0.3); color: #fff; }
+
+.gx-sub { font-size: 10.5px; color: rgba(150, 160, 185, 0.65); margin-top: 7px; line-height: 1.35; }
+.gx-footer { margin-top: 14px; padding-top: 8px; border-top: 1px solid rgba(140, 150, 180, 0.14); }
+.gx-textlike { background: transparent; }
+.gx-adv-stats { font-size: 10.5px; color: rgba(150, 160, 185, 0.6); margin-top: 8px; font-variant-numeric: tabular-nums; }
+
+/* note filter (#11) — 可点的文件夹图例（主） */
+.gx-folders { margin-top: 2px; }
+.gx-folder {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	padding: 3px 6px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 11.5px;
+	user-select: none;
+}
+.gx-folder:hover { background: rgba(127, 155, 255, 0.16); }
+.gx-folder-dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	flex: none;
+	background: var(--gx-folder-color, #9aa4b2);
+	box-shadow: 0 0 6px var(--gx-folder-color, #9aa4b2);
+}
+.gx-folder-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gx-folder-count { font-size: 10px; color: rgba(150, 160, 185, 0.6); font-variant-numeric: tabular-nums; }
+.gx-folder-solo { font-size: 9.5px; color: #7f9bff; opacity: 0; padding-left: 2px; }
+.gx-folder:hover .gx-folder-solo { opacity: 1; }
+.gx-folder.is-off { opacity: 0.38; }
+.gx-folder.is-off .gx-folder-dot { background: transparent; box-shadow: none; border: 1px solid rgba(150, 160, 185, 0.7); }
+
+/* Tag Lens：紧凑单选 chips；标签沿用图中现有 tag 节点配色，不另建颜色体系。 */
+.gx-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin-top: 8px;
+}
+.gx-tags.is-hidden { display: none; }
+button.gx-tag-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	max-width: 100%;
+	padding: 3px 7px;
+	border-radius: 999px;
+	border: 1px solid rgba(140, 160, 210, 0.2);
+	background: rgba(140, 150, 180, 0.09);
+	color: inherit;
+	font-size: 10.5px;
+	line-height: 1.25;
+	cursor: pointer;
+	box-shadow: none;
+}
+button.gx-tag-chip:hover { background: rgba(127, 155, 255, 0.16); }
+button.gx-tag-chip.is-active {
+	border-color: rgba(127, 155, 255, 0.6);
+	background: rgba(127, 155, 255, 0.24);
+	box-shadow: inset 0 0 0 1px rgba(127, 155, 255, 0.22);
+}
+.gx-tag-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gx-tag-count { color: rgba(150, 160, 185, 0.65); font-variant-numeric: tabular-nums; }
+.gx-tag-chip.is-active .gx-tag-count { color: rgba(220, 227, 255, 0.82); }
+.gx-theme-light .gx-zone-section > summary {
+	color: rgba(79, 91, 111, 0.78);
+	border-bottom-color: rgba(72, 81, 98, 0.15);
+}
+.gx-theme-light .gx-zone-section > summary:hover { color: rgba(45, 55, 72, 0.94); }
+.gx-theme-light .gx-tag-count { color: rgba(79, 91, 111, 0.72); }
+.gx-theme-light .gx-tag-chip.is-active .gx-tag-count { color: rgba(31, 41, 51, 0.82); }
+
+/* 文本查询逃生口（次）：默认折叠，只给图例表达不了的横切模式 */
+.gx-filter-esc { margin-top: 9px; border-top: 1px dashed rgba(140, 150, 180, 0.16); padding-top: 8px; }
+.gx-filter-esc-t {
+	font-size: 10.5px;
+	color: rgba(150, 160, 185, 0.65);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	user-select: none;
+}
+.gx-filter-esc-t:hover { color: inherit; }
+.gx-filter-esc-t.is-open span:first-child { transform: rotate(45deg); }
+.gx-filter-esc-t span:first-child { transition: transform 0.15s; display: inline-block; }
+.gx-filter-esc-b { display: none; }
+.gx-filter-esc-b.is-open { display: block; }
+
+.gx-filter { position: relative; margin-top: 7px; }
+.gx-filter-input {
+	width: 100%;
+	font-family: var(--font-monospace);
+	font-size: 11.5px;
+	color: inherit;
+	background: rgba(0, 0, 0, 0.28);
+	border: 1px solid rgba(140, 160, 210, 0.16);
+	border-radius: 8px;
+	padding: 6px 24px 6px 9px;
+	outline: none;
+}
+.gx-filter-input::placeholder { color: rgba(150, 160, 185, 0.5); }
+.gx-filter-input:focus { border-color: rgba(127, 155, 255, 0.55); background: rgba(0, 0, 0, 0.4); }
+.gx-filter-clear {
+	position: absolute;
+	right: 4px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 17px;
+	height: 17px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	box-shadow: none;
+	color: rgba(150, 160, 185, 0.7);
+	cursor: pointer;
+	font-size: 10px;
+	line-height: 1;
+	padding: 0;
+}
+.gx-filter-clear:hover { background: rgba(127, 155, 255, 0.16); color: inherit; }
+.gx-filter-clear.is-hidden { display: none; }
+.gx-filter-none { font-size: 10.5px; color: #ffb95c; margin-top: 6px; line-height: 1.35; }
+.gx-filter-none.is-hidden { display: none; }
+
+/* persistent help popover */
+.gx-help-pop { position: absolute; z-index: 20; right: 0; top: 32px; width: 232px; background: rgba(20, 24, 38, 0.98); border: 1px solid rgba(127, 155, 255, 0.5); border-radius: 10px; padding: 11px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6); }
+.gx-help-pop h4 { margin: 0 0 8px; font-size: 12px; }
+.gx-help-lines { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: rgba(200, 210, 235, 0.85); line-height: 1.4; }
+
+/* node card: link-depth control */
+/* 关联深度：低优先级——小、淡、卡片底部一行 */
+.gx-card-depth { display: flex; align-items: center; gap: 5px; margin-top: 9px; padding-top: 7px; border-top: 1px solid rgba(150, 160, 185, 0.12); font-size: 9.5px; color: rgba(150, 160, 185, 0.5); }
+.gx-card-depth-mini { display: inline-flex; border: 1px solid rgba(140, 160, 210, 0.16); border-radius: 5px; overflow: hidden; }
+.gx-card-depth-mini button { border: 0; background: transparent; color: rgba(150, 160, 185, 0.6); font-size: 9.5px; padding: 1px 7px; cursor: pointer; box-shadow: none; }
+.gx-card-depth-mini button.is-on { background: rgba(127, 155, 255, 0.2); color: rgba(230, 236, 246, 0.95); }
