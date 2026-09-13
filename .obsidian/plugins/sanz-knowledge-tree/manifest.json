@@ -1,0 +1,9 @@
+{
+  "id": "sanz-knowledge-tree",
+  "name": "Sanz 的知识树",
+  "version": "1.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "面向嵌入式、具身智能和 Agent 开发的三栏知识工作站。",
+  "author": "Sanz",
+  "isDesktopOnly": false
+}
