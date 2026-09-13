@@ -1,0 +1,9 @@
+{
+  "id": "jupyter-editor",
+  "name": "Jupyter Editor",
+  "version": "3.6.0",
+  "minAppVersion": "1.0.0",
+  "description": "在 Obsidian 中阅览、编辑并通过本机虚拟环境执行 Jupyter Notebook。",
+  "author": "Sanz",
+  "isDesktopOnly": true
+}

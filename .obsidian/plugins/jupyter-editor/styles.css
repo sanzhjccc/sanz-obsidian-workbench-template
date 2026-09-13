@@ -1,0 +1,573 @@
+.je-root {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 !important;
+    background: var(--background-primary);
+}
+
+.je-scroll-area {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    overflow-anchor: none;
+    overscroll-behavior: contain;
+}
+
+.je-claudian-selection-bridge {
+    display: none !important;
+    position: absolute !important;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: 0;
+    pointer-events: none;
+}
+
+.je-toolbar {
+    position: relative;
+    z-index: 30;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 48px;
+    padding: 0.45rem 1rem;
+    border-bottom: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+}
+
+.je-identity,
+.je-toolbar-controls,
+.je-button,
+.je-cell-toolbar,
+.je-cell-actions,
+.je-insert-bar {
+    display: flex;
+    align-items: center;
+}
+
+.je-identity {
+    min-width: 0;
+    gap: 0.55rem;
+}
+
+.je-title {
+    overflow: hidden;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.je-badge,
+.je-status,
+.je-number-label,
+.je-citation {
+    padding: 0.13rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.je-badge {
+    color: var(--text-accent);
+    background: var(--background-modifier-hover);
+}
+
+.je-toolbar-controls {
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.je-status {
+    color: var(--text-muted);
+}
+
+.je-status.is-dirty {
+    color: var(--text-warning);
+    background: var(--background-modifier-hover);
+}
+
+.je-environment-select {
+    max-width: 220px;
+    height: 30px;
+    font-size: 0.76rem;
+}
+
+.je-kernel-status {
+    max-width: 190px;
+    overflow: hidden;
+    padding: 0.13rem 0.5rem;
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: var(--background-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.je-kernel-status.is-idle {
+    color: var(--text-success);
+}
+
+.je-kernel-status.is-busy,
+.je-kernel-status.is-starting,
+.je-kernel-status.is-stopping {
+    color: var(--text-warning);
+}
+
+.je-kernel-status.is-failed {
+    color: var(--text-error);
+}
+
+.je-kernel-start,
+.je-kernel-interrupt,
+.je-kernel-stop {
+    padding-inline: 0.5rem;
+}
+
+.je-button {
+    gap: 0.35rem;
+}
+
+.je-button-icon,
+.je-button-icon svg {
+    display: inline-flex;
+    width: 15px;
+    height: 15px;
+}
+
+.je-canvas {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0.75rem 2rem 4rem;
+}
+
+.je-canvas.is-editing {
+    max-width: 1120px;
+}
+
+.je-cell {
+    margin-bottom: 1.3rem;
+}
+
+.je-preview-cell-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 30px;
+    padding: 0.2rem 0.45rem;
+    border-bottom: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+}
+
+.je-preview-cell-toolbar .je-cell-index {
+    margin-right: auto;
+}
+
+.je-cell-manage-button {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+}
+
+.je-markdown {
+    line-height: var(--line-height-normal);
+    border-radius: 6px;
+    cursor: text;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.je-markdown:hover {
+    background: var(--background-primary-alt);
+    box-shadow: 0 0 0 6px var(--background-primary-alt);
+}
+
+.je-number-label {
+    display: table;
+    margin: -0.5rem 0 0.85rem auto;
+    color: var(--text-muted);
+    background: var(--background-secondary);
+    font-family: var(--font-monospace);
+}
+
+.je-citation {
+    color: var(--text-muted);
+    background: var(--background-secondary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.je-citation:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+
+.je-code {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid var(--background-modifier-border);
+    border-left: 3px solid var(--color-blue);
+    border-radius: 7px;
+    background: var(--background-secondary);
+}
+
+.je-execution-count {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    padding: 0.7rem 0.25rem 0;
+    color: var(--text-muted);
+    font-family: var(--font-monospace);
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+.je-execution-count.is-running {
+    color: var(--text-warning);
+    font-weight: 700;
+}
+
+.je-code-source {
+    grid-column: 2;
+    grid-row: 3;
+    min-width: 0;
+}
+
+.je-code > .je-preview-cell-toolbar {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+.je-code > .je-execution-count {
+    grid-row: 2 / span 2;
+}
+
+.je-code-toolbar {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-end;
+    min-height: 30px;
+    padding: 0.2rem 0.4rem;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.je-cell-run-status {
+    margin-right: auto;
+    align-self: center;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: var(--background-primary);
+    font-size: 0.72rem;
+    font-weight: 650;
+}
+
+.je-cell-run-status.is-running {
+    color: var(--text-warning);
+}
+
+.je-cell-run-status.is-completed {
+    color: var(--text-success);
+}
+
+.je-cell-run-status.is-error {
+    color: var(--text-error);
+}
+
+.je-cell-run-status.is-interrupted {
+    color: var(--text-muted);
+}
+
+.je-run-cell svg {
+    width: 16px;
+    height: 16px;
+}
+
+.je-run-cell:has(.lucide-loader-circle) svg,
+.je-icon-button:has(.lucide-loader-circle) svg {
+    animation: je-spin 1s linear infinite;
+}
+
+@keyframes je-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.je-inline-cell-editor {
+    margin-bottom: 1.3rem;
+    overflow: hidden;
+    border: 1px solid var(--interactive-accent);
+    border-left: 3px solid var(--color-purple);
+    border-radius: 7px;
+    background: var(--background-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+}
+
+.je-inline-cell-editor.is-code {
+    border-left-color: var(--color-blue);
+}
+
+.je-inline-editor-header,
+.je-inline-editor-actions {
+    display: flex;
+    align-items: center;
+}
+
+.je-inline-editor-header {
+    gap: 0.65rem;
+    padding: 0.38rem 0.55rem 0.38rem 0.75rem;
+    border-bottom: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.je-inline-editor-hint {
+    margin-right: auto;
+    opacity: 0.8;
+}
+
+.je-inline-editor-actions {
+    gap: 0.35rem;
+}
+
+.je-inline-editor-actions button {
+    height: 27px;
+    padding-inline: 0.65rem;
+    font-size: 0.75rem;
+}
+
+.je-image-picker {
+    display: none;
+}
+
+.je-inline-editor-source {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    overflow-y: hidden;
+    padding: 0.9rem 1rem;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-family: var(--font-text);
+    font-size: var(--font-text-size);
+    line-height: 1.6;
+}
+
+.je-inline-editor-source.is-code {
+    tab-size: 4;
+    font-family: var(--font-monospace);
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.je-code-source pre {
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.je-code-source pre code {
+    font-size: 0.85rem;
+}
+
+.je-outputs {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    border-top: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+}
+
+.je-code > .je-outputs {
+    grid-row: 4;
+}
+
+.je-output {
+    overflow-x: auto;
+    padding: 0.5rem 0.8rem;
+}
+
+.je-output-text {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: var(--text-normal);
+    font-family: var(--font-monospace);
+    font-size: 0.82rem;
+}
+
+.je-output-text.is-error,
+.je-error-title {
+    color: var(--text-error);
+}
+
+.je-error-title {
+    margin-bottom: 0.35rem;
+    font-family: var(--font-monospace);
+    font-weight: 700;
+}
+
+.je-output-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.je-notebook-image {
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.je-markdown-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.je-image-caption {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.je-image-error {
+    padding: 0.6rem;
+    border: 1px solid var(--text-error);
+    border-radius: 6px;
+    color: var(--text-error);
+    font-family: var(--font-monospace);
+    font-size: 0.78rem;
+}
+
+.je-html-output table {
+    border-collapse: collapse;
+    color: var(--text-normal);
+}
+
+.je-html-output th,
+.je-html-output td {
+    padding: 3px 8px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.je-editor-cell {
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--background-modifier-border);
+    border-left: 3px solid var(--color-purple);
+    border-radius: 7px;
+    background: var(--background-primary-alt);
+}
+
+.je-editor-cell.is-code {
+    border-left-color: var(--color-blue);
+}
+
+.je-cell-toolbar {
+    gap: 0.55rem;
+    padding: 0.38rem 0.5rem 0.38rem 0.7rem;
+    border-bottom: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+}
+
+.je-cell-index {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.je-type-select {
+    height: 28px;
+    margin-right: auto;
+    font-size: 0.76rem;
+}
+
+.je-cell-actions {
+    gap: 0.15rem;
+}
+
+.je-icon-button svg {
+    width: 15px;
+    height: 15px;
+}
+
+.je-source-editor {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    overflow-y: hidden;
+    padding: 0.85rem 1rem;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-family: var(--font-text);
+    font-size: var(--font-text-size);
+    line-height: 1.55;
+}
+
+.je-source-editor.is-code {
+    tab-size: 4;
+    font-family: var(--font-monospace);
+    font-size: 0.86rem;
+}
+
+.je-source-editor:focus {
+    box-shadow: inset 0 0 0 1px var(--interactive-accent);
+}
+
+.je-editor-cell > .je-outputs {
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.je-insert-bar {
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem;
+    border: 1px dashed var(--background-modifier-border);
+    border-radius: 7px;
+}
+
+.je-failure {
+    margin: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--background-modifier-error-border);
+    border-radius: 7px;
+    color: var(--text-error);
+    font-family: var(--font-monospace);
+}
+
+@media (max-width: 720px) {
+    .je-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .je-toolbar-controls {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .je-canvas {
+        padding: 1rem 0.75rem 3rem;
+    }
+}
