@@ -1,0 +1,7 @@
+.trash/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.obsidian/cache/
+.obsidian/workspace-mobile.json

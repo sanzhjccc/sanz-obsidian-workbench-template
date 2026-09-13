@@ -1,0 +1,17 @@
+{
+  "name": "Sanz Obsidian 工作台模板",
+  "version": "1.0.0",
+  "created": "2026-09-08",
+  "containsPersonalNoteContent": false,
+  "bundledPlugins": [
+    "sanz-knowledge-tree",
+    "jupyter-editor"
+  ],
+  "sanitized": [
+    "workspace history",
+    "personal paths",
+    "calendar events",
+    "AI conversation state",
+    "Git repository data"
+  ]
+}
